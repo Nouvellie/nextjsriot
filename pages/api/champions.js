@@ -12,7 +12,6 @@ export default async function handler(req, res) {
 
   if (req.method === 'GET') {
     try {
-      console.log(`Fetching champions for page ${page}`);
       let champions = await Champion.find({}).skip(skip).limit(ITEMS_PER_PAGE);
 
       if (champions.length === 0) {
@@ -20,7 +19,10 @@ export default async function handler(req, res) {
         const response = await axios.get('https://ddragon.leagueoflegends.com/cdn/14.10.1/data/en_US/champion.json');
         const championsData = Object.values(response.data.data);
 
-        await Champion.insertMany(championsData);
+        for (const champ of championsData) {
+          await Champion.updateOne({ id: champ.id }, champ, { upsert: true });
+        }
+
         champions = await Champion.find({}).skip(skip).limit(ITEMS_PER_PAGE);
       }
 

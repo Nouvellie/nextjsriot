@@ -1,36 +1,24 @@
-import React, { useState } from 'react';
-import dbConnect from "@/utils/db";
-import Champion from "@/models/Champion";
-import ChampionsList from "@/components/ChampionsList";
+import React from 'react';
+import Link from 'next/link';
+import dbConnect from '@/utils/db';
+import axios from 'axios';
 
-export async function getServerSideProps(context) {
-    const { page = 1 } = context.query;
-    const res = await fetch(`${process.env.NEXT_PUBLIC_BASE_URL}/api/champions?page=${page}`);
-    const champions = await res.json();
-  
+export async function getServerSideProps() {
+    await dbConnect();
+    await axios.get('http://localhost:3000/api/champions');
+    
     return {
-      props: { champions, page: parseInt(page, 10) },
+      props: {},
     };
   }
   
-  const Home = ({ champions, page }) => {
-    const [currentPage, setCurrentPage] = useState(page);
-  
-    const handleNextPage = () => {
-      setCurrentPage(prevPage => prevPage + 1);
-    };
-  
-    const handlePreviousPage = () => {
-      setCurrentPage(prevPage => Math.max(prevPage - 1, 1));
-    };
-  
+  const Home = () => {
     return (
       <div>
-        <ChampionsList champions={champions} />
-        <div>
-          {currentPage > 1 && <button onClick={handlePreviousPage}>Previous</button>}
-          <button onClick={handleNextPage}>Next</button>
-        </div>
+        <h1>Welcome to the League of Legends Champions</h1>
+        <Link href="/champions" legacyBehavior>
+          <a>View Champions</a>
+        </Link>
       </div>
     );
   };
