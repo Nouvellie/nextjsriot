@@ -12,23 +12,21 @@ export default async function handler(req, res) {
 
   if (req.method === 'GET') {
     try {
-      let champions = await Champion.find({})
-        .skip(skip)
-        .limit(ITEMS_PER_PAGE);
+      console.log(`Fetching champions for page ${page}`);
+      let champions = await Champion.find({}).skip(skip).limit(ITEMS_PER_PAGE);
 
       if (champions.length === 0) {
+        console.log('No champions found in database, fetching from API');
         const response = await axios.get('https://ddragon.leagueoflegends.com/cdn/14.10.1/data/en_US/champion.json');
         const championsData = Object.values(response.data.data);
 
         await Champion.insertMany(championsData);
-        champions = await Champion.find({})
-          .skip(skip)
-          .limit(ITEMS_PER_PAGE);
+        champions = await Champion.find({}).skip(skip).limit(ITEMS_PER_PAGE);
       }
 
       res.status(200).json(champions);
     } catch (error) {
-      console.error(error);
+      console.error('Error fetching champions data:', error);
       res.status(500).json({ error: 'Error fetching champions data' });
     }
   } else {

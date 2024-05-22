@@ -3,7 +3,10 @@ import mongoose from "mongoose";
 const MONGODB_URI = process.env.MONGODB_URI;
 
 if (!MONGODB_URI) {
+  console.error('MONGODB_URI is not defined');
   throw new Error('Please define the MONGODB_URI environment variable inside .env.local');
+} else {
+  console.log('MONGODB_URI is defined:', MONGODB_URI);
 }
 
 let cached = global.mongoose;
@@ -14,12 +17,18 @@ if (!cached) {
 
 async function dbConnect() {
   if (cached.conn) {
+    console.log('Using cached connection');
     return cached.conn;
   }
 
   if (!cached.promise) {
+    console.log('Creating new connection');
     cached.promise = mongoose.connect(MONGODB_URI).then((mongoose) => {
+      console.log('New connection established');
       return mongoose;
+    }).catch((error) => {
+      console.error('Error connecting to MongoDB:', error);
+      throw error;
     });
   }
   cached.conn = await cached.promise;

@@ -1,8 +1,8 @@
 import mongoose from "mongoose";
 
 const ChampionSchema = new mongoose.Schema({
-    id: String,
-    name: String,
+    id: { type: String, required: true, unique: true },
+    name: { type: String, required: true },
     title: String,
     blurb: String,
     image: Object,
