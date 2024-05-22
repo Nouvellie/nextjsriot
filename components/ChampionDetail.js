@@ -1,25 +1,12 @@
-import React from "react";
-import { useRouter } from "next/router";
-import { useQuery } from "react-query";
-import { fetchCahmpionsDetails } from "@/utils/api";
-
-const ChampionDetail = () => {
-    const router = useRouter();
-    const {id} = router.query;
-
-    const {data, error, isLoading} = useQuery(['champion', id], () => fetchChampionDetails(id), {
-        enabled: !!id,
-    });
-
-    if(!isLoading) return <p>Loading...</p>
-    if (error) return <p>Error loading champion details.</p>;
-
+const ChampionDetail = ({ champion }) => {
     return (
-        <div>
-            <h1>{data.name}</h1>
-            <p>{data.description}</p>
-        </div>
+      <div>
+        <h1>{champion.name}</h1>
+        <p>{champion.title}</p>
+        <p>{champion.blurb}</p>
+        <img src={`https://ddragon.leagueoflegends.com/cdn/img/champion/splash/${champion.id}_0.jpg`} alt={champion.name} />
+      </div>
     );
-};
-
-export default ChampionDetail;
+  };
+  
+  export default ChampionDetail;
