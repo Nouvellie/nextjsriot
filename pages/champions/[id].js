@@ -3,10 +3,10 @@ import Champion from "@/models/Champion";
 import ChampionDetail from "@/components/ChampionDetail";
 
 export async function getServerSideProps({ params }) {
-    await dbConnect();
+    const res = await fetch(`${process.env.NEXT_PUBLIC_BASE_URL}/api/champion?id=${params.id}`);
+    const champion = await res.json();
   
-    const champion = await Champion.findOne({ id: params.id }).lean();
-    return { props: { champion: JSON.parse(JSON.stringify(champion)) } };
+    return { props: { champion } };
   }
   
   const ChampionPage = ({ champion }) => {
@@ -14,4 +14,3 @@ export async function getServerSideProps({ params }) {
   };
   
   export default ChampionPage;
-  

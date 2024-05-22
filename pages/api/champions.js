@@ -2,21 +2,36 @@ import dbConnect from "@/utils/db";
 import Champion from "@/models/Champion";
 import axios from "axios";
 
+const ITEMS_PER_PAGE = 10;
+
 export default async function handler(req, res) {
-    await dbConnect();
-    if (req.method === 'GET') {
-        const champions = await Champion.find({});
-        if (champions.length === 0) {
-            const response = await axios.get(`https://na1.api.riotgames.com/lol/static-data/v3/champions?api_key=${process.env.RIOT_API_KEY}`);
-            const championsData = response.data.data;
-            for (const champKey in championsData) {
-                const champ = championsData[champKey];
-                await Champion.create(champ);
-            }
-        }
-        const updatedChampions = await Champion.find({});
-        res.status(200).json(updatedChampions);
-    } else {
-        res.status(405).end(`Method ${req.method} Not Allowed`);
+  await dbConnect();
+
+  const { page = 1 } = req.query;
+  const skip = (page - 1) * ITEMS_PER_PAGE;
+
+  if (req.method === 'GET') {
+    try {
+      let champions = await Champion.find({})
+        .skip(skip)
+        .limit(ITEMS_PER_PAGE);
+
+      if (champions.length === 0) {
+        const response = await axios.get('https://ddragon.leagueoflegends.com/cdn/14.10.1/data/en_US/champion.json');
+        const championsData = Object.values(response.data.data);
+
+        await Champion.insertMany(championsData);
+        champions = await Champion.find({})
+          .skip(skip)
+          .limit(ITEMS_PER_PAGE);
+      }
+
+      res.status(200).json(champions);
+    } catch (error) {
+      console.error(error);
+      res.status(500).json({ error: 'Error fetching champions data' });
     }
+  } else {
+    res.status(405).end(`Method ${req.method} Not Allowed`);
+  }
 }

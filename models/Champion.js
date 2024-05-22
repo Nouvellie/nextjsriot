@@ -7,6 +7,6 @@ const ChampionSchema = new mongoose.Schema({
     blurb: String,
     image: Object,
     tags: [String],
-});
-
-export default mongoose.models.Champion || mongoose.model('Champion', ChampionSchema);
+  });
+  
+  export default mongoose.models.Champion || mongoose.model('Champion', ChampionSchema);
