@@ -1,55 +1,54 @@
+/* Champions.module.css */
+
 .container {
-    padding: 20px;
-  }
-  
-  .grid {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 20px;
-  }
-  
-  .card {
-    background: #fff;
-    border: 1px solid #e1e1e1;
-    border-radius: 10px;
-    overflow: hidden;
-    width: 300px;
-    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
-    transition: box-shadow 0.3s ease-in-out;
-  }
-  
-  .card:hover {
-    box-shadow: 0 8px 16px rgba(0,0,0,0.2);
-  }
-  
-  .card img {
-    width: 100%;
-    height: auto;
-  }
-  
-  .card h2 {
-    margin: 10px;
-    font-size: 1.5em;
-  }
-  
-  .card p {
-    margin: 10px;
-    font-size: 1em;
-    color: #666;
-  }
-  
-  .card a {
-    display: block;
-    margin: 10px;
-    padding: 10px;
-    background: #0070f3;
-    color: #fff;
-    text-align: center;
-    text-decoration: none;
-    border-radius: 5px;
-    transition: background 0.3s ease-in-out;
-  }
-  
-  .card a:hover {
-    background: #005bb5;
-  }
+  height: 100vh; /* Ocupa toda la altura de la ventana del navegador */
+  overflow-y: auto; /* Permitir desplazamiento vertical */
+  padding: 20px;
+  box-sizing: border-box;
+}
+
+.searchBar {
+  width: 100%;
+  padding: 10px;
+  margin-bottom: 20px;
+  box-sizing: border-box;
+  font-size: 16px;
+}
+
+.grid {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px; /* Espacio entre los elementos de la cuadrícula */
+  justify-content: space-between;
+}
+
+.card {
+  background: white;
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  transition: transform 0.2s;
+  width: calc(25% - 20px); /* Ajuste flexible para la cuadrícula, cuatro elementos por fila */
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.card:hover {
+  transform: scale(1.05);
+}
+
+.image {
+  max-width: 100%;
+  border-radius: 4px;
+}
+
+.link {
+  text-decoration: none;
+  color: #0070f3;
+  margin-top: auto; /* Empuja el enlace hacia abajo */
+}
+
+.link:hover {
+  text-decoration: underline;
+}
