@@ -13,7 +13,7 @@ const Navbar = () => {
           </a>
         </Link>
         <Link href="/" legacyBehavior>
-          <a className={styles.title}>NOUVELLIE</a>
+          <a className={styles.title}>NOUVELLIE.GG</a>
         </Link>
       </div>
       <ul className={styles.navCenter}>
