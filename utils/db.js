@@ -17,14 +17,11 @@ if (!cached) {
 
 async function dbConnect() {
   if (cached.conn) {
-    console.log('Using cached connection');
     return cached.conn;
   }
 
   if (!cached.promise) {
-    console.log('Creating new connection');
     cached.promise = mongoose.connect(MONGODB_URI).then((mongoose) => {
-      console.log('New connection established');
       return mongoose;
     }).catch((error) => {
       console.error('Error connecting to MongoDB:', error);

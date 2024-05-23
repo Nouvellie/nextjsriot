@@ -1,0 +1,33 @@
+.container {
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    padding-top: 20vh; /* Moves the search bar down to the second quadrant */
+  }
+  
+  .searchContainer {
+    width: 70%;
+  }
+  
+  .searchBar {
+    width: 100%;
+    padding: 10px;
+    font-size: 1.2em;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  }
+  
+  @media (max-width: 768px) {
+    .searchContainer {
+      width: 90%;
+    }
+  }
+  
+  @media (max-width: 480px) {
+    .searchContainer {
+      width: 100%;
+    }
+  }
+  
