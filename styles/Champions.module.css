@@ -2,9 +2,15 @@
 
 .container {
   height: 100vh; /* Ocupa toda la altura de la ventana del navegador */
-  overflow-y: auto; /* Permitir desplazamiento vertical */
+  overflow-y: scroll; /* Permitir desplazamiento vertical */
   padding: 20px;
   box-sizing: border-box;
+  scrollbar-width: none; /* Para Firefox */
+  -ms-overflow-style: none; /* Para Internet Explorer y Edge */
+}
+
+.container::-webkit-scrollbar {
+  display: none; /* Para Chrome, Safari y Opera */
 }
 
 .searchBar {
