@@ -13,31 +13,33 @@ const Navbar = () => {
           </a>
         </Link>
         <Link href="/" legacyBehavior>
-          <a className={styles.title}>NOUVELLIE.GG</a>
+          <a className={styles.title}>NOUVELLIE</a>
         </Link>
       </div>
-      <ul className={styles.navCenter}>
-        <li>
-          <Link href="/" legacyBehavior>
-            <a>Text1</a>
-          </Link>
-        </li>
-        <li>
-          <Link href="/" legacyBehavior>
-            <a>Text2</a>
-          </Link>
-        </li>
-        <li>
-          <Link href="/" legacyBehavior>
-            <a>Text3</a>
-          </Link>
-        </li>
-        <li>
-          <Link href="/champions" legacyBehavior>
-            <a>Champions</a>
-          </Link>
-        </li>
-      </ul>
+      <div className={styles.navCenter}>
+        <ul>
+          <li>
+            <Link href="/" legacyBehavior>
+              <a>Text1</a>
+            </Link>
+          </li>
+          <li>
+            <Link href="/" legacyBehavior>
+              <a>Text2</a>
+            </Link>
+          </li>
+          <li>
+            <Link href="/" legacyBehavior>
+              <a>Text3</a>
+            </Link>
+          </li>
+          <li>
+            <Link href="/champions" legacyBehavior>
+              <a>Champions</a>
+            </Link>
+          </li>
+        </ul>
+      </div>
       <ul className={styles.navLinks}>
         <li>
           <Link href="/" legacyBehavior>
