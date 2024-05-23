@@ -19,7 +19,7 @@ const ChampionsListPage = ({ champions }) => {
 
   return (
     <div className={styles.container}>
-      <h1>League of Legends Champions</h1>
+      <h1 className={styles.title}>Champions</h1>
       <input
         type="text"
         placeholder="Search for a champion..."
