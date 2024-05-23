@@ -18,28 +18,30 @@ const ChampionsListPage = ({ champions }) => {
   );
 
   return (
-    <div className={styles.container}>
+    <div className={`container ${styles.container}`}>
       <h1 className={styles.title}>Champions</h1>
       <input
         type="text"
         placeholder="Search for a champion..."
-        className={styles.searchBar}
+        className={`form-control ${styles.searchBar}`}
         value={searchTerm}
         onChange={e => setSearchTerm(e.target.value)}
       />
       <div className={styles.grid}>
         {filteredChampions.map((champion) => (
-          <div key={champion.id} className={styles.card}>
+          <div key={champion.id} className={`card ${styles.card}`}>
             <img
               src={`https://ddragon.leagueoflegends.com/cdn/img/champion/splash/${champion.id}_0.jpg`}
               alt={champion.name}
-              className={styles.image}
+              className={`card-img-top ${styles.image}`}
             />
-            <h2>{champion.name}</h2>
-            <p>{champion.title}</p>
-            <Link href={`/champions/${champion.id}`} legacyBehavior>
-              <a className={styles.link}>More Details</a>
-            </Link>
+            <div className="card-body text-center">
+              <h2 className="card-title">{champion.name}</h2>
+              <p className="card-text">{champion.title}</p>
+              <Link href={`/champions/${champion.id}`} legacyBehavior>
+                <a className={`btn btn-primary ${styles.link}`}>More Details</a>
+              </Link>
+            </div>
           </div>
         ))}
       </div>

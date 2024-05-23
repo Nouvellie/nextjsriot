@@ -1,16 +1,10 @@
-/* Champions.module.css */
+/* styles/Champions.module.css */
 
 .container {
   height: 100vh; /* Ocupa toda la altura de la ventana del navegador */
-  overflow-y: scroll; /* Permitir desplazamiento vertical */
   padding: 20px;
   box-sizing: border-box;
-  scrollbar-width: none; /* Para Firefox */
-  -ms-overflow-style: none; /* Para Internet Explorer y Edge */
-}
-
-.container::-webkit-scrollbar {
-  display: none; /* Para Chrome, Safari y Opera */
+  overflow-y: auto; /* Permitir desplazamiento vertical */
 }
 
 .title {
@@ -28,10 +22,10 @@
 }
 
 .grid {
-  display: flex;
-  flex-wrap: wrap;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr); /* Máximo cuatro columnas */
   gap: 20px; /* Espacio entre los elementos de la cuadrícula */
-  justify-content: space-between;
+  justify-items: center; /* Centrar los elementos */
 }
 
 .card {
@@ -40,7 +34,7 @@
   border-radius: 8px;
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
   transition: transform 0.2s;
-  width: calc(25% - 20px); /* Ajuste flexible para la cuadrícula, cuatro elementos por fila */
+  width: 100%; /* Ancho fijo para las tarjetas */
   display: flex;
   flex-direction: column;
   align-items: center;

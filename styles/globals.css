@@ -15,3 +15,12 @@ a {
 * {
   box-sizing: border-box;
 }
+
+.container::-webkit-scrollbar {
+  display: none; /* Para Chrome, Safari y Opera */
+}
+
+.container {
+  scrollbar-width: none; /* Para Firefox */
+  -ms-overflow-style: none; /* Para Internet Explorer y Edge */
+}
