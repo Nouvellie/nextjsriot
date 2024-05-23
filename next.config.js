@@ -6,4 +6,7 @@ module.exports = {
     RIOT_API_KEY: process.env.RIOT_API_KEY,
     NEXT_PUBLIC_BASE_URL: process.env.NEXT_PUBLIC_BASE_URL,
   },
+  webpack: (config, { dev, isServer }) => {
+    return config;
+  },
 };
